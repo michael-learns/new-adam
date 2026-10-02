@@ -1,8 +1,7 @@
 import type { Page } from "./types";
-import { site } from "./site";
 
-const mailto = (subject: string) => `mailto:${site.contactEmail}?subject=${encodeURIComponent(subject)}`;
-const INQUIRE = { label: "Ask about the next ceremony", href: mailto("Kairos Events inquiry") };
+// Contact buttons are off until there's a channel (no email for now).
+const INQUIRE = { label: "Ask about the next ceremony", href: "#" };
 
 /**
  * Kairos Events product page, read top to bottom in the order shown on the page.
@@ -25,8 +24,8 @@ export const kairosEvents: Page = {
       title: ["You've built a life together.", "Now make it official."],
       highlight: "make it official.",
       lead: "Kairos Events gives couples who live together a meaningful wedding ceremony with full government recognition, so your relationship and your family stand on solid ground.",
-      primaryCta: INQUIRE,
-      secondaryCta: { label: "How it works", href: "#how-it-works" },
+      primaryCta: { label: "See how it works", href: "#how-it-works" },
+      secondaryCta: { label: "Does this sound familiar?", href: "#why" },
       certificate: "Officially married",
     },
     {
@@ -71,12 +70,6 @@ export const kairosEvents: Page = {
         few: "{n} of {total}: {themes}. You're not alone, and it's not too late. We'd start by {first}, then {then}.",
         many: "{n} of {total}: {themes}. This could be your right moment. We'd start by {first}, then {then}.",
         all: "All {total}. Then this is your Kairos, your right moment. Let's talk about the next ceremony.",
-      },
-      cta: {
-        label: "Ask about the next ceremony",
-        email: site.contactEmail,
-        subject: "Kairos Events inquiry",
-        intro: "Hi New Adam, this sounds like our story:",
       },
       closing: "Kairos means the right moment. We help you make this the one.",
     },
@@ -128,6 +121,8 @@ export const kairosEvents: Page = {
       body: "Kairos Events is part of New Adam's mission to transform lives through lived values. We believe commitment, honored and made official, gives a family a stronger foundation for everything that follows.",
     },
     {
+      // Hidden until there's a contact channel (no email for now).
+      hidden: true,
       type: "booking",
       id: "begin",
       number: "05",

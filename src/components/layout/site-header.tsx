@@ -3,7 +3,7 @@ import { Logo } from "@/components/brand/logo";
 import { Button, Container } from "@/components/ui";
 import type { Link } from "@/content/types";
 
-export function SiteHeader({ nav, cta, current }: { nav: Link[]; cta: Link; current: string }) {
+export function SiteHeader({ nav, cta, current }: { nav: Link[]; cta?: Link; current: string }) {
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
       <a
@@ -37,9 +37,11 @@ export function SiteHeader({ nav, cta, current }: { nav: Link[]; cta: Link; curr
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <span className="hidden sm:block">
-            <Button link={cta} className="min-h-10 px-5 text-sm" />
-          </span>
+          {cta && (
+            <span className="hidden sm:block">
+              <Button link={cta} className="min-h-10 px-5 text-sm" />
+            </span>
+          )}
           {/* Phone menu: a native disclosure, so it works without JavaScript. */}
           <details className="group relative md:hidden">
             <summary
@@ -65,9 +67,11 @@ export function SiteHeader({ nav, cta, current }: { nav: Link[]; cta: Link; curr
                   </NextLink>
                 </li>
               ))}
-              <li className="p-2 sm:hidden">
-                <Button link={cta} className="w-full" />
-              </li>
+              {cta && (
+                <li className="p-2 sm:hidden">
+                  <Button link={cta} className="w-full" />
+                </li>
+              )}
             </ul>
           </details>
         </div>

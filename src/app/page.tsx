@@ -30,7 +30,7 @@ export default async function HomePage() {
           },
         ]}
       />
-      <PageShell page={page} site={site} cta={{ label: "Begin", href: "#begin" }} />
+      <PageShell page={page} site={site} />
     </>
   );
 }

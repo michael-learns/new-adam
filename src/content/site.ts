@@ -18,8 +18,8 @@ export const site: SiteSettings = {
   url: resolveSiteUrl(),
   locale: "en-PH",
   areaServed: "Philippines",
-  // TODO: replace with the real inbox before launch.
-  contactEmail: "hello@newadam.org",
+  // No public contact email for now. Set contactEmail when there's a real inbox
+  // (and un-hide the "Book"/"Begin" sections in the content files).
   nav: [
     { label: "Values Formation", href: "/values-formation" },
     { label: "Kairos Events", href: "/kairos-events" },

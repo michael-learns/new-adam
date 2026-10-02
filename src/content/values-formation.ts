@@ -1,10 +1,10 @@
 import type { Page } from "./types";
 import { site } from "./site";
 
-const mailto = (subject: string) => `mailto:${site.contactEmail}?subject=${encodeURIComponent(subject)}`;
-
-const BOOK_CALL = { label: "Book a discovery call", href: mailto("Discovery call request") };
-const FREE_ASSESSMENT = { label: "Get your free assessment", href: mailto("Free values assessment") };
+// Contact buttons are off until there's a channel (no email for now); the
+// sections that need one are hidden below. Point these at it when ready.
+const BOOK_CALL = { label: "Book a discovery call", href: "#" };
+const FREE_ASSESSMENT = { label: "Get your free assessment", href: "#" };
 
 /**
  * Values Formation product page, read top to bottom in the order shown on the page.
@@ -28,8 +28,8 @@ export const valuesFormation: Page = {
       title: ["Your core values are on the wall.", "Are they in your team?"],
       highlight: "in your team?",
       lead: "New Adam builds training around your company's own values, mission, vision and culture, then gives your people practical tools to live them out in every meeting, deadline and decision.",
-      primaryCta: { label: "Book a discovery call", href: "#book" },
-      secondaryCta: { label: "No core values yet? Start free", href: "#assessment" },
+      primaryCta: { label: "See how it works", href: "#how-it-works" },
+      secondaryCta: { label: "Does this sound familiar?", href: "#problem" },
       poster: {
         heading: "Our core values",
         company: "Your company",
@@ -122,12 +122,6 @@ export const valuesFormation: Page = {
         few: "{n} of {total}: {themes}. These usually share one root: values that never became habits. We'd start by {first}, then {then}.",
         many: "{n} of {total}: {themes}. That's a culture pattern, not a bad quarter. We'd start by {first}, then {then}.",
         all: "All {total}. You're describing a culture that's ready for a reset, and that's exactly where we do our best work. Let's start with a discovery call.",
-      },
-      cta: {
-        label: "Talk to us about these",
-        email: site.contactEmail,
-        subject: "Values Formation: what we're facing",
-        intro: "Hi New Adam, these sound familiar for our team:",
       },
       closing:
         "It isn't a motivation problem. Your team needs practical tools, built around values they recognize as their own.",
@@ -274,6 +268,8 @@ export const valuesFormation: Page = {
       ],
     },
     {
+      // Hidden until there's a contact channel (no email for now).
+      hidden: true,
       type: "assessment",
       id: "assessment",
       eyebrow: "No core values yet?",
@@ -303,6 +299,8 @@ export const valuesFormation: Page = {
       cta: { label: "Read our story", href: "/our-story" },
     },
     {
+      // Hidden until there's a contact channel (no email for now).
+      hidden: true,
       type: "booking",
       id: "book",
       number: "07",

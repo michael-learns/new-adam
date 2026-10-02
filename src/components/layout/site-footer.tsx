@@ -28,7 +28,7 @@ export function SiteFooter({ site }: { site: SiteSettings }) {
           </nav>
         </div>
         <div className="space-y-2 text-sm text-white/70 sm:text-right">
-          {/* Contact email hidden until the real inbox is set up (site.contactEmail). */}
+          {/* No contact email for now (see site.contactEmail). */}
           {site.social.length > 0 && (
             <ul className="flex gap-4 sm:justify-end">
               {site.social.map((s) => (

@@ -50,10 +50,11 @@ export function FamiliarChecklist({ section }: { section: ProblemSection }) {
 
   // The email arrives already listing what the visitor picked.
   const chosen = order.map((i) => section.pains[i].text);
-  const body = n > 0 ? `${section.cta.intro}\n\n${chosen.map((p) => `• ${p}`).join("\n")}\n` : "";
-  const href = `mailto:${section.cta.email}?subject=${encodeURIComponent(section.cta.subject)}${
-    body ? `&body=${encodeURIComponent(body)}` : ""
-  }`;
+  const cta = section.cta;
+  const body = cta && n > 0 ? `${cta.intro}\n\n${chosen.map((p) => `• ${p}`).join("\n")}\n` : "";
+  const href = cta
+    ? `mailto:${cta.email}?subject=${encodeURIComponent(cta.subject)}${body ? `&body=${encodeURIComponent(body)}` : ""}`
+    : "";
 
   return (
     <div>
@@ -115,7 +116,7 @@ export function FamiliarChecklist({ section }: { section: ProblemSection }) {
             </motion.p>
           </AnimatePresence>
         </div>
-        {n > 0 && <Button link={{ label: section.cta.label, href }} variant="onBlue" className="shrink-0" />}
+        {cta && n > 0 && <Button link={{ label: cta.label, href }} variant="onBlue" className="shrink-0" />}
       </div>
     </div>
   );

@@ -19,7 +19,8 @@ export type SiteSettings = {
   description: string;
   url: string;
   locale: string;
-  contactEmail: string;
+  /** Leave unset to keep email off the site (buttons and structured data). */
+  contactEmail?: string;
   areaServed: string;
   /** Site-wide header navigation. */
   nav: Link[];
@@ -90,7 +91,8 @@ export type ProblemSection = Numbered & {
    * {first} and {then} (the remedies of the first two picks).
    */
   responses: { none: string; few: string; many: string; all: string };
-  cta: { label: string; email: string; subject: string; intro: string };
+  /** Optional email button that lists what was picked. Omit to show the replies only. */
+  cta?: { label: string; email: string; subject: string; intro: string };
   closing: string;
 };
 

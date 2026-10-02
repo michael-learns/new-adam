@@ -33,8 +33,14 @@ export function PersonShape({
   return (
     <g transform={`translate(${x} ${y}) scale(${size})`}>
       <path d="M-24 0V-34a24 24 0 0 1 48 0V0Z" fill={body} className="transition-[fill] duration-700" />
-      {/* Long hair: falls from the sides of the head onto the shoulders, top of the head left clear. */}
-      {hair && <path d="M-17 -64a9 9 0 0 1 9-9h16a9 9 0 0 1 9 9v18a4 4 0 0 1-4 4h-26a4 4 0 0 1-4-4Z" fill={HAIR} />}
+      {/* Long hair: a crown above the head and two lengths falling past the
+          shoulders on either side, with nothing under the chin. */}
+      {hair && (
+        <path
+          d="M-15.5 -71A15.5 15.5 0 0 1 15.5 -71V-50Q15.5 -46 11.5 -46Q9.5 -46 9.5 -48V-66H-9.5V-48Q-9.5 -46 -11.5 -46Q-15.5 -46 -15.5 -50Z"
+          fill={HAIR}
+        />
+      )}
       <circle cx="0" cy="-70" r="13" fill={head} className="transition-[fill] duration-700" />
     </g>
   );

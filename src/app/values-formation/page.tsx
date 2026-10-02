@@ -18,7 +18,7 @@ export default async function ValuesFormationPage() {
   return (
     <>
       <JsonLd graph={[organizationJsonLd(site), serviceJsonLd(site, page, "Corporate values formation training")]} />
-      <PageShell page={page} site={site} cta={{ label: "Book a call", href: "#book" }} />
+      <PageShell page={page} site={site} />
     </>
   );
 }

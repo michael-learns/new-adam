@@ -24,7 +24,7 @@ function railLabel(section: Section): string | null {
 }
 
 /** Header, page sections in order, and footer. Shared by every page. */
-export function PageShell({ page, site, cta }: { page: Page; site: SiteSettings; cta: Link }) {
+export function PageShell({ page, site, cta }: { page: Page; site: SiteSettings; cta?: Link }) {
   const sections = page.sections.filter((section) => !section.hidden);
   const outline: RailItem[] = sections.flatMap((section) => {
     const label = railLabel(section);

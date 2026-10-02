@@ -18,7 +18,7 @@ export default async function KairosEventsPage() {
   return (
     <>
       <JsonLd graph={[organizationJsonLd(site), serviceJsonLd(site, page, "Wedding ceremonies")]} />
-      <PageShell page={page} site={site} cta={{ label: "Ask about a ceremony", href: "#begin" }} />
+      <PageShell page={page} site={site} />
     </>
   );
 }

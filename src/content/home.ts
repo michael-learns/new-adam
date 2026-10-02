@@ -1,8 +1,8 @@
 import { programs } from "./programs";
 import type { Page } from "./types";
-import { site } from "./site";
 
-const mailto = (subject: string) => `mailto:${site.contactEmail}?subject=${encodeURIComponent(subject)}`;
+// Contact buttons are off until there's a channel (no email for now); the
+// section that uses them is hidden below.
 
 /**
  * Home page: New Adam as the mission, with Values Formation and Kairos Events
@@ -111,14 +111,16 @@ export const home: Page = {
       ],
     },
     {
+      // Hidden until there's a contact channel (no email for now).
+      hidden: true,
       type: "booking",
       id: "begin",
       number: "05",
       label: "Begin",
       title: "Ready for a new beginning?",
       body: "Tell us whether it's for your team or your relationship, and we'll reply personally.",
-      primaryCta: { label: "Book training for your team", href: mailto("Values Formation inquiry") },
-      secondaryCta: { label: "Ask about Kairos Events", href: mailto("Kairos Events inquiry") },
+      primaryCta: { label: "Book training for your team", href: "#" },
+      secondaryCta: { label: "Ask about Kairos Events", href: "#" },
       reassurance: ["Across the Philippines", "On-site or online training", "Personal replies"],
       art: "booking",
     },

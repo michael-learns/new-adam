@@ -19,7 +19,7 @@ export function organizationJsonLd(site: SiteSettings) {
     url: site.url,
     logo: `${site.url}/logo.png`,
     description: site.description,
-    email: site.contactEmail,
+    ...(site.contactEmail ? { email: site.contactEmail } : {}),
     areaServed: { "@type": "Country", name: site.areaServed },
     sameAs: site.social.map((s) => s.href),
   };
