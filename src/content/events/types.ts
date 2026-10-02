@@ -54,8 +54,14 @@ export type EventDetails = {
   };
   prices: EventPrices;
 
-  /** Registration. "form" sends people to a form; online checkout can be added later. */
+  /** Registration. "form" sends people to a form for each attendee's details. */
   registration: { mode: "form"; formUrl: string; note: string };
+  /**
+   * Ways to pay, shown under the seat picker. Each one only shows once it's
+   * filled in (and, for `online`, once PAYMONGO_SECRET_KEY is set); with
+   * neither, `registration.note` explains that the secretariat sends details.
+   */
+  payment: { online?: OnlinePayment; bank?: BankTransfer; other: string };
 
   hero: {
     title: string;
@@ -130,4 +136,43 @@ export type EventDetails = {
 
   organizer: { presentedBy: string; organizedBy: string };
   secretariat: { name: string; phone: string; phoneLabel: string };
+};
+
+/** PayMongo checkout payment methods (https://docs.paymongo.com/reference/create-a-checkout). */
+export type PaymongoMethod =
+  | "qrph"
+  | "dob"
+  | "dob_ubp"
+  | "brankas_bdo"
+  | "brankas_landbank"
+  | "brankas_metrobank"
+  | "gcash"
+  | "paymaya"
+  | "grab_pay"
+  | "shopee_pay"
+  | "card"
+  | "billease";
+
+/**
+ * Online payment through PayMongo Checkout, by a link emailed after registering
+ * (src/lib/payment-links.ts). The price is always worked out on the server.
+ */
+export type OnlinePayment = {
+  /** Which PayMongo methods to offer. Online banking and QR Ph have the lowest fees. */
+  methods: PaymongoMethod[];
+  title: string;
+  /** {total} becomes the amount for the seats picked. */
+  body: string;
+};
+
+/** Direct bank transfer or InstaPay QR to the organizer's account: no fees. */
+export type BankTransfer = {
+  title: string;
+  bankName: string;
+  accountName: string;
+  accountNumber: string;
+  /** QR Ph / InstaPay code for the account, in public/events/<slug>/. */
+  qr?: { src: string; width: number; height: number };
+  /** What to do after paying, e.g. send the deposit slip to the secretariat. */
+  body: string;
 };

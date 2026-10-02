@@ -14,7 +14,7 @@ export const site: SiteSettings = {
   name: "New Adam",
   descriptor: "Transforming lives through values and culture",
   description:
-    "New Adam helps people live out the values that shape a good life, through values formation training for companies and Kairos Events for couples in the Philippines.",
+    "New Adam helps people live out the values that shape a good life, through values formation and trainings for companies and weddings for couples in the Philippines.",
   url: resolveSiteUrl(),
   locale: "en-PH",
   areaServed: "Philippines",
@@ -22,7 +22,7 @@ export const site: SiteSettings = {
   // (and un-hide the "Book"/"Begin" sections in the content files).
   nav: [
     { label: "Values Formation", href: "/values-formation" },
-    { label: "Kairos Events", href: "/kairos-events" },
+    { label: "Weddings", href: "/weddings" },
     { label: "Our story", href: "/our-story" },
   ],
   social: [],

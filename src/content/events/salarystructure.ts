@@ -61,6 +61,26 @@ export const salaryStructure: EventDetails = {
     note: "Our secretariat confirms your seat and sends the payment details, including options for company POs, bank transfer or check.",
   },
 
+  payment: {
+    // Payment links emailed after registering (see scripts/google-apps-script).
+    // Shows once PAYMONGO_SECRET_KEY is set. Fees: online banking ~0.71%, QR Ph ~1.5%.
+    online: {
+      methods: ["dob", "dob_ubp", "qrph"],
+      title: "Pay online",
+      body: "Right after you register, we'll email you a link to pay {total} by online banking (BPI, UnionBank) or QR Ph from GCash, Maya and 30+ banks.",
+    },
+    // TODO: fill in New Adam's account to show the free bank transfer option.
+    // bank: {
+    //   title: "Bank transfer · no fees",
+    //   bankName: "",
+    //   accountName: "",
+    //   accountNumber: "",
+    //   qr: { src: "/events/salarystructure/instapay-qr.png", width: 600, height: 600 },
+    //   body: "Send a photo of your deposit slip to Mary Joy on Viber or text so we can confirm your seat.",
+    // },
+    other: "Paying by company PO or check? Register, and our secretariat will send the details Accounting needs.",
+  },
+
   hero: {
     title: "“How did you decide my salary?”",
     kicker: "Next time they ask, show them the math.",
@@ -291,7 +311,8 @@ Can we go ahead?`,
       {
         q: "How do we pay? Can our company use a PO?",
         a: [
-          `Reserve your seat with the [registration form](${FORM}). Our secretariat confirms your seat and sends the payment details, including options for company POs, bank transfer or check, plus any documents Accounting needs.`,
+          `Reserve your seat with the [registration form](${FORM}). Right after, we email you a link to pay online by online banking or QR Ph.`,
+          "Paying by company PO, bank transfer or check? Our secretariat sends the details, plus any documents Accounting needs.",
         ],
       },
       {

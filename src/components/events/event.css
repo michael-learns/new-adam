@@ -282,6 +282,23 @@
   .nudge button { border: 0; background: none; color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; padding: 0; }
   .buy .btn-block { margin-top: var(--s4); }
   .pay-meth { margin-top: var(--s2); font-size: 14px; color: var(--muted); }
+  .pay { margin-top: var(--s5); padding-top: var(--s4); border-top: 1px solid var(--line); }
+  .pay-h { font: 600 15px var(--font-ui); color: var(--ink); }
+  .pay-grid { margin-top: var(--s3); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--s3); }
+  .pay-opt { display: flex; flex-direction: column; gap: var(--s2); padding: var(--s4); border: 1px solid var(--line); border-radius: 12px; font-size: 14.5px; color: var(--ink-2); }
+  .pay-opt .btn-block { margin-top: auto; }
+  .pay-opt .btn:disabled { opacity: 0.7; cursor: progress; }
+  .pay-t { font: 600 16px var(--font-ui); color: var(--ink); }
+  .pay-err { font-size: 14px; color: #b42318; }
+  .pay-ok { margin-bottom: var(--s4); padding: var(--s3); border-radius: 12px; background: var(--pale); color: var(--ink); font-size: 14.5px; }
+  .pay-ok span { color: var(--blue); font-weight: 700; margin-right: 4px; }
+  .pay-ok a { color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .bank { display: grid; grid-template-columns: auto 1fr; gap: 6px var(--s3); margin: 0; align-items: baseline; }
+  .bank dt { color: var(--muted); }
+  .bank dd { margin: 0; color: var(--ink); font-weight: 600; }
+  .bank .mono { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+  .bank .copy { margin-left: 6px; border: 1px solid var(--line); background: transparent; border-radius: 99px; padding: 2px 10px; font: 600 12px var(--font-ui); color: var(--blue); }
+  .bank-qr { width: 168px; height: auto; border-radius: 8px; border: 1px solid var(--line); }
   .rates { margin-top: var(--s5); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s7); }
   .rates table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
   .rates td { padding: var(--s3) 0; border-bottom: 1px solid var(--line); vertical-align: top; }

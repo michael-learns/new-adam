@@ -1,7 +1,7 @@
 import "server-only";
 
 import { home } from "@/content/home";
-import { kairosEvents } from "@/content/kairos-events";
+import { weddings } from "@/content/weddings";
 import { ourStory } from "@/content/our-story";
 import { site } from "@/content/site";
 import type { Page, SiteSettings } from "@/content/types";
@@ -22,7 +22,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 }
 
 const pages: Record<string, Page> = Object.fromEntries(
-  [home, valuesFormation, kairosEvents, ourStory].map((page) => [page.slug, page]),
+  [home, valuesFormation, weddings, ourStory].map((page) => [page.slug, page]),
 );
 
 /** Every page slug, for the sitemap. */

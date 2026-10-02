@@ -194,6 +194,7 @@ export type BrandHeroSection = {
   eyebrow: string;
   title: [string, string];
   highlight?: string;
+  /** Supports [text](/path) links, shown highlighted. */
   lead: string;
   primaryCta: Link;
   secondaryCta?: Link;
@@ -202,7 +203,7 @@ export type BrandHeroSection = {
   after: string;
 };
 
-/** Kairos Events hero: a couple under the arch, made official. */
+/** Weddings hero: a couple under the arch, made official. */
 export type KairosHeroSection = {
   type: "kairosHero";
   id: string;

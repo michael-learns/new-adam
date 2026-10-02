@@ -1,6 +1,6 @@
 import { NewBeginning } from "@/components/illustrations/new-beginning";
 import { FadeUp } from "@/components/motion/word-reveal";
-import { Button, Container } from "@/components/ui";
+import { Button, Container, RichText } from "@/components/ui";
 import type { BrandHeroSection } from "@/content/types";
 import { HeroHeadline } from "./hero-headline";
 
@@ -17,7 +17,9 @@ export function BrandHero({ section }: { section: BrandHeroSection }) {
           </FadeUp>
           <HeroHeadline title={section.title} highlight={section.highlight} />
           <FadeUp delay={1}>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">{section.lead}</p>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">
+              <RichText text={section.lead} />
+            </p>
           </FadeUp>
           <FadeUp delay={1.15} className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button link={section.primaryCta} />

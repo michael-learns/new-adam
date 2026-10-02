@@ -10,7 +10,7 @@ export const ourStory: Page = {
   seo: {
     title: "Our story | Named for a new beginning | New Adam",
     description:
-      "Why we're called New Adam, what our logo means, and the biblical values behind our programs: Values Formation for companies and Kairos Events for couples.",
+      "Why we're called New Adam, what our logo means, and the biblical values behind our programs: Values Formation for companies and Weddings for couples.",
   },
   sections: [
     {
@@ -83,7 +83,7 @@ export const ourStory: Page = {
       title: "Ready for a new beginning?",
       body: "Tell us whether it's for your team or your relationship, and we'll reply personally.",
       primaryCta: { label: "Book training for your team", href: "#" },
-      secondaryCta: { label: "Ask about Kairos Events", href: "#" },
+      secondaryCta: { label: "Ask about weddings", href: "#" },
       reassurance: ["Across the Philippines", "On-site or online training", "Personal replies"],
       art: "booking",
     },

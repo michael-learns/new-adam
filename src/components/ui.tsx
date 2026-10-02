@@ -138,3 +138,33 @@ export function CrossIcon({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+/**
+ * Copy with inline links written as [text](/path). Links are highlighted, so
+ * a CMS editor can point words at pages without touching code.
+ */
+export function RichText({ text }: { text: string }) {
+  const parts: ReactNode[] = [];
+  const pattern = /\[([^\]]+)\]\(([^)\s]+)\)/g;
+  let last = 0;
+  for (const match of text.matchAll(pattern)) {
+    const [whole, label, href] = match;
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    const className =
+      "font-semibold text-royal underline decoration-orange decoration-2 underline-offset-[6px] transition-colors hover:text-ink hover:decoration-royal";
+    parts.push(
+      href.startsWith("/") ? (
+        <NextLink key={match.index} href={href} className={className}>
+          {label}
+        </NextLink>
+      ) : (
+        <a key={match.index} href={href} className={className}>
+          {label}
+        </a>
+      ),
+    );
+    last = match.index + whole.length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return <>{parts}</>;
+}

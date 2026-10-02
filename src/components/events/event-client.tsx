@@ -129,7 +129,7 @@ function usePop(key: string) {
   return ref;
 }
 
-export function SeatPicker({ event }: { event: EventDetails }) {
+export function SeatPicker({ event, payOnline }: { event: EventDetails; payOnline: boolean }) {
   const eb = useEarlyBird();
   const live = useSeats();
   const [wanted, setSeats] = useState(1);
@@ -205,7 +205,84 @@ export function SeatPicker({ event }: { event: EventDetails }) {
           Register now{seats > 1 ? ` · ${seats} seats` : ""} →
         </button>
       )}
-      <p className="pay-meth">{event.registration.note}</p>
+      <PayOptions event={event} seats={seats} total={q.total} payOnline={payOnline && !soldOut} />
+    </div>
+  );
+}
+
+/* ---------- ways to pay ---------- */
+
+/** True when PayMongo sent the visitor back after paying (…?paid=1). */
+function useReturnedPaid() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => new URLSearchParams(window.location.search).has("paid"),
+    () => false,
+  );
+}
+
+function PayOptions({ event, seats, total, payOnline }: { event: EventDetails; seats: number; total: number; payOnline: boolean }) {
+  const { online, bank, other } = event.payment;
+  const showOnline = payOnline && online;
+  const paid = useReturnedPaid();
+  const [copied, setCopied] = useState(false);
+
+  if (!showOnline && !bank) return <p className="pay-meth">{event.registration.note}</p>;
+
+  const copyNumber = async () => {
+    if (!bank) return;
+    try {
+      await navigator.clipboard.writeText(bank.accountNumber.replace(/\s/g, ""));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard blocked: the number is still on screen */
+    }
+  };
+
+  return (
+    <div className="pay">
+      {paid && (
+        <p className="pay-ok" role="status">
+          <span aria-hidden="true">✓</span> Payment received. Your receipt is in your email, and{" "}
+          {event.secretariat.name.split(" ")[0]} from our secretariat will confirm your seat.
+        </p>
+      )}
+      <p className="pay-h">After you register, pay for {seats === 1 ? "your seat" : `${seats} seats`}</p>
+      <div className="pay-grid">
+        {showOnline && (
+          <div className="pay-opt">
+            <p className="pay-t">{online.title}</p>
+            <p>{online.body.replace("{total}", peso(total))}</p>
+          </div>
+        )}
+        {bank && (
+          <div className="pay-opt">
+            <p className="pay-t">{bank.title}</p>
+            <dl className="bank">
+              <dt>Bank</dt>
+              <dd>{bank.bankName}</dd>
+              <dt>Account name</dt>
+              <dd>{bank.accountName}</dd>
+              <dt>Account no.</dt>
+              <dd>
+                <span className="mono">{bank.accountNumber}</span>{" "}
+                <button type="button" className="copy" onClick={copyNumber}>
+                  {copied ? "Copied" : "Copy"}
+                </button>
+              </dd>
+              <dt>Amount</dt>
+              <dd>{peso(total)}</dd>
+            </dl>
+            {bank.qr && (
+              // eslint-disable-next-line @next/next/no-img-element -- small static QR, shown as-is
+              <img className="bank-qr" src={bank.qr.src} width={bank.qr.width} height={bank.qr.height} alt={`QR code for ${bank.accountName}`} />
+            )}
+            <p>{bank.body}</p>
+          </div>
+        )}
+      </div>
+      <p className="pay-meth">{other}</p>
     </div>
   );
 }

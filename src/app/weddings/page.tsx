@@ -4,14 +4,14 @@ import { PageShell } from "@/components/layout/page-shell";
 import { getPage, getSiteSettings } from "@/lib/content";
 import { JsonLd, organizationJsonLd, pageMetadata, serviceJsonLd } from "@/lib/page-meta";
 
-const SLUG = "/kairos-events";
+const SLUG = "/weddings";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage(SLUG);
   return page ? pageMetadata(page) : {};
 }
 
-export default async function KairosEventsPage() {
+export default async function WeddingsPage() {
   const [page, site] = await Promise.all([getPage(SLUG), getSiteSettings()]);
   if (!page) notFound();
 

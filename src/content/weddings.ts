@@ -4,26 +4,26 @@ import type { Page } from "./types";
 const INQUIRE = { label: "Ask about the next ceremony", href: "#" };
 
 /**
- * Kairos Events product page, read top to bottom in the order shown on the page.
+ * Weddings product page, read top to bottom in the order shown on the page.
  *
  * TO CONFIRM before launch: the process steps and outcomes describe how the
  * program is expected to work; check them against the real program details.
  */
-export const kairosEvents: Page = {
-  slug: "/kairos-events",
+export const weddings: Page = {
+  slug: "/weddings",
   seo: {
-    title: "Kairos Events | Legally recognized wedding ceremonies in the Philippines | New Adam",
+    title: "Weddings | Legally recognized wedding ceremonies in the Philippines | New Adam",
     description:
-      "Kairos Events by New Adam gives couples who live together a meaningful wedding ceremony with full government recognition, so their relationship and family stand on solid ground.",
+      "New Adam gives couples who live together a meaningful wedding ceremony with full government recognition, so their relationship and family stand on solid ground.",
   },
   sections: [
     {
       type: "kairosHero",
       id: "top",
-      eyebrow: "Kairos Events by New Adam",
+      eyebrow: "Weddings by New Adam",
       title: ["You've built a life together.", "Now make it official."],
       highlight: "make it official.",
-      lead: "Kairos Events gives couples who live together a meaningful wedding ceremony with full government recognition, so your relationship and your family stand on solid ground.",
+      lead: "We give couples who live together a meaningful wedding ceremony with full government recognition, so your relationship and your family stand on solid ground.",
       primaryCta: { label: "See how it works", href: "#how-it-works" },
       secondaryCta: { label: "Does this sound familiar?", href: "#why" },
       certificate: "Officially married",
@@ -41,9 +41,9 @@ export const kairosEvents: Page = {
         {
           text: "We've wanted to marry for years, but a wedding felt too expensive.",
           theme: "the cost of a wedding",
-          remedy: "talking through what a Kairos ceremony involves",
+          remedy: "talking through what the ceremony involves",
           single:
-            "A wedding shouldn't have to wait for a big budget. We'll talk you through what a Kairos ceremony involves, so cost isn't a guess.",
+            "A wedding shouldn't have to wait for a big budget. We'll talk you through what the ceremony involves, so cost isn't a guess.",
         },
         {
           text: "The requirements seemed confusing, so we kept putting it off.",
@@ -55,23 +55,23 @@ export const kairosEvents: Page = {
           text: "Life got busy, and the right time never came.",
           theme: "the right time never coming",
           remedy: "finding a ceremony date that works for your family",
-          single: "Kairos means the right moment. We'll help you find one that works for your family, and make it happen.",
+          single: "We'll help you find the right moment for your family, and make it happen.",
         },
         {
           text: "We want our family to have the security of a legal marriage.",
           theme: "wanting security for your family",
           remedy: "making your marriage officially recognized",
           single:
-            "That's exactly what Kairos Events is for: a marriage with full government recognition, so your family stands on solid ground.",
+            "That's exactly what our weddings are for: a marriage with full government recognition, so your family stands on solid ground.",
         },
       ],
       responses: {
         none: "Pick any that sound like your story.",
         few: "{n} of {total}: {themes}. You're not alone, and it's not too late. We'd start by {first}, then {then}.",
         many: "{n} of {total}: {themes}. This could be your right moment. We'd start by {first}, then {then}.",
-        all: "All {total}. Then this is your Kairos, your right moment. Let's talk about the next ceremony.",
+        all: "All {total}. Then this is your right moment. Let's talk about the next ceremony.",
       },
-      closing: "Kairos means the right moment. We help you make this the one.",
+      closing: "It's not too late. We help you make this the right moment.",
     },
     {
       type: "process",
@@ -84,7 +84,7 @@ export const kairosEvents: Page = {
         {
           title: "Reach out",
           art: "discover",
-          body: "Tell us about yourselves. We'll explain how Kairos Events works and when the next ceremony is.",
+          body: "Tell us about yourselves. We'll explain how it works and when the next ceremony is.",
         },
         {
           title: "Prepare together",
@@ -118,7 +118,7 @@ export const kairosEvents: Page = {
       label: "Why we do this",
       title: "Why we do this",
       statement: "Every family deserves to stand on solid ground.",
-      body: "Kairos Events is part of New Adam's mission to transform lives through lived values. We believe commitment, honored and made official, gives a family a stronger foundation for everything that follows.",
+      body: "Our weddings are part of New Adam's mission to transform lives through lived values. We believe commitment, honored and made official, gives a family a stronger foundation for everything that follows.",
     },
     {
       // Hidden until there's a contact channel (no email for now).

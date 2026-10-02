@@ -17,11 +17,11 @@ export const programs: PathsSection["items"] = [
   },
   {
     eyebrow: "For your relationship",
-    name: "Kairos Events",
+    name: "Weddings",
     title: "Make your relationship official, with dignity.",
     body: "Wedding ceremonies with full government recognition, for couples who live together and are ready to make it official.",
     points: ["A meaningful ceremony", "Full government recognition", "A fresh start for your family"],
-    cta: { label: "Explore Kairos Events", href: "/kairos-events" },
+    cta: { label: "Explore Weddings", href: "/weddings" },
     art: "couple",
   },
 ];

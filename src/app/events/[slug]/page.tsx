@@ -4,6 +4,7 @@ import { EventPage } from "@/components/events/event-page";
 import { eventUrl, events, getEvent } from "@/content/events";
 import { isEarlyBird, nowMs } from "@/lib/event-pricing";
 import { JsonLd } from "@/lib/page-meta";
+import { paymongoEnabled } from "@/lib/paymongo";
 
 // Pre-render every event, and refresh hourly so server-rendered prices and
 // "early bird" wording stay current even before the browser takes over.
@@ -83,6 +84,7 @@ export default async function EventRoute({ params }: PageProps<"/events/[slug]">
         event={event}
         url={url}
         earlyBirdAtBuild={isEarlyBird(event.schedule.earlyBirdEndsAt)}
+        payOnline={paymongoEnabled()}
         renderedAt={nowMs()}
       />
     </>

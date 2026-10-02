@@ -314,11 +314,11 @@ export const valuesFormation: Page = {
     },
     {
       type: "portfolio",
-      id: "kairos",
+      id: "weddings",
       label: "Also from New Adam",
-      name: "Kairos Events",
+      name: "Weddings",
       body: "Wedding ceremonies with full government recognition, for couples who are ready to make their relationship official.",
-      cta: { label: "Learn about Kairos Events", href: "/kairos-events" },
+      cta: { label: "Learn about our weddings", href: "/weddings" },
     },
   ],
 };

@@ -6,7 +6,7 @@ Website for New Adam, which transforms lives through values and culture. It has 
 |---|---|---|
 | `/` | New Adam (parent brand) | `src/content/home.ts` |
 | `/values-formation` | Values Formation for companies | `src/content/values-formation.ts` |
-| `/kairos-events` | Kairos Events for couples | `src/content/kairos-events.ts` |
+| `/weddings` | Weddings for couples (was `/kairos-events`, which redirects) | `src/content/weddings.ts` |
 
 Header navigation lives in `src/content/site.ts` (`nav`). `/explore` redirects to `/`.
 
@@ -28,7 +28,7 @@ src/
   content/
     types.ts        Content model: the contract between content and components
     site.ts         Site settings: name, descriptor, contact email, social links
-    home.ts, values-formation.ts, kairos-events.ts   Page copy, one entry per section, in page order
+    home.ts, values-formation.ts, weddings.ts   Page copy, one entry per section, in page order
   lib/content.ts    The only place content is loaded (the CMS seam)
   components/
     brand/          Vector logo (symbol, horizontal and stacked; color, blue and white)
@@ -105,6 +105,19 @@ The countdown bar, hero facts, seat picker and closing section show live seats l
 - Counting rules (per event, in `seatsSheet`): only rows with a value in `requiredColumn` count; a number in `seatsColumn` is added up, anything else counts as 1 seat; rows whose `statusColumn` contains a word in `ignoreStatuses` (e.g. cancelled, refunded) are skipped.
 - When seats reach 0 the page switches to "Sold out · call for the waitlist".
 
+### Payment
+
+Under the seat picker, the page explains how to pay after registering. Set per event in `payment`:
+
+- **Pay online by emailed link** (`payment.online`, PayMongo Checkout): after someone submits the Google Form, the Apps Script in the registrations sheet gets a payment link from `/api/events/<slug>/payment-link`, writes **Amount due** and **Payment link** on their row and emails them the link. Setup: [`scripts/google-apps-script/README.md`](scripts/google-apps-script/README.md).
+  - The link (`/pay/<token>`) is signed with `PAYMENT_LINK_SECRET`, so seats and price can't be changed, and it holds no personal data. Each visit opens a fresh PayMongo checkout priced with `quote()` (seats × per-seat rate), with early bird locked to when they registered.
+  - `methods` picks what PayMongo offers: online banking (`dob`, `dob_ubp`, ~0.71%) and QR Ph (`qrph`, ~1.5%) keep fees lowest.
+  - Needs `PAYMONGO_SECRET_KEY` (`sk_test_…` locally and in Preview, `sk_live_…` in Production) and `PAYMENT_LINK_SECRET` (same value in Vercel and the Apps Script's Script properties).
+  - After paying, PayMongo sends them back to `?paid=1`, which shows "Payment received".
+- **Bank transfer** (`payment.bank`): bank, account name, number (with a copy button), amount and an optional InstaPay/QR Ph image in `public/events/<slug>/`. No fees; the secretariat confirms from the deposit slip.
+- With neither filled in, the picker shows `registration.note` instead.
+- Payments aren't written back to the sheet yet, so they don't change seats left (registrations already count when the form is submitted).
+
 ### Add a new event
 
 1. Copy `src/content/events/salarystructure.ts` to `src/content/events/<slug>.ts` and edit it. The slug becomes the subdomain.
@@ -121,7 +134,7 @@ The countdown bar, hero facts, seat picker and closing section show live seats l
 ## Before launch
 
 - [ ] Replace the placeholders in `src/content/*.ts` (search `PLACEHOLDER`): client names/logos, stats and testimonials.
-- [ ] Confirm the Kairos Events process and outcomes in `src/content/kairos-events.ts` match the real program.
+- [ ] Confirm the Weddings process and outcomes in `src/content/weddings.ts` match the real program.
 - [ ] Replace the placeholder contact email in `src/content/site.ts`.
 - [ ] Add social profile links to `site.social` (they also feed JSON-LD `sameAs`).
 - [ ] Swap in the official vector logo when it is available.

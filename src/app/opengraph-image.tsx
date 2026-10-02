@@ -8,6 +8,6 @@ export default function Image() {
   return renderOg({
     line1: "Lives change",
     line2: "when values are lived.",
-    footer: "Values Formation · Kairos Events",
+    footer: "Values Formation · Weddings",
   });
 }
