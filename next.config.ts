@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    // The parent-brand exploration became the home page.
+    return [{ source: "/explore", destination: "/", permanent: true }];
+  },
 };
 
 export default nextConfig;

@@ -1,0 +1,13 @@
+{
+  "brand": "New Adam",
+  "version": "1.0",
+  "colors": {
+    "royalBlue": "#2454D6",
+    "warmOrange": "#FF873E",
+    "warmWhite": "#F7F8F4",
+    "paleBlue": "#EAF0FF",
+    "darkInk": "#18243A"
+  },
+  "textFamily": "Manrope",
+  "faithTagline": "I am a new creation"
+}

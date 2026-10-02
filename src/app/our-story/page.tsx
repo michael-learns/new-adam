@@ -4,14 +4,14 @@ import { PageShell } from "@/components/layout/page-shell";
 import { getPage, getSiteSettings } from "@/lib/content";
 import { JsonLd, organizationJsonLd, pageMetadata } from "@/lib/page-meta";
 
-const SLUG = "/";
+const SLUG = "/our-story";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage(SLUG);
   return page ? pageMetadata(page) : {};
 }
 
-export default async function HomePage() {
+export default async function OurStoryPage() {
   const [page, site] = await Promise.all([getPage(SLUG), getSiteSettings()]);
   if (!page) notFound();
 
@@ -21,12 +21,12 @@ export default async function HomePage() {
         graph={[
           organizationJsonLd(site),
           {
-            "@type": "WebSite",
-            "@id": `${site.url}/#website`,
-            url: site.url,
-            name: site.name,
-            publisher: { "@id": `${site.url}/#organization` },
-            inLanguage: site.locale,
+            "@type": "AboutPage",
+            "@id": `${site.url}${SLUG}#page`,
+            url: `${site.url}${SLUG}`,
+            name: page.seo.title,
+            description: page.seo.description,
+            about: { "@id": `${site.url}/#organization` },
           },
         ]}
       />
