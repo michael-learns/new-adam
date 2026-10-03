@@ -32,7 +32,7 @@ export const home: Page = {
       eyebrow: "Values Formation · Weddings · Philippines",
       title: ["Lives change", "when values are lived."],
       highlight: "are lived.",
-      lead: "New Adam helps me to live the best life. We do it through [values formation](/values-formation) for companies, [trainings](/values-formation), and [weddings](/weddings) for couples.",
+      lead: "New Adam helps people to live the best life. We do it through [values formation](/values-formation) for companies, [trainings](/values-formation), and [weddings](/weddings) for couples.",
       primaryCta: { label: "Find your way in", href: "#paths" },
       secondaryCta: { label: "Our story", href: "/our-story" },
       before: "Old patterns",
