@@ -24,6 +24,14 @@ export type SiteSettings = {
   areaServed: string;
   /** Site-wide header navigation. */
   nav: Link[];
+  /** Event highlighted in the header on every page; hidden once it's over. */
+  featuredEvent?: {
+    /** Event slug, from src/content/events. */
+    event: string;
+    label: string;
+    /** Fits beside the menu button on phones. */
+    shortLabel: string;
+  };
   social: Link[];
 };
 
@@ -267,6 +275,20 @@ export type KairosSection = Numbered & {
   art?: ArtName;
 };
 
+/**
+ * A big button to an event landing page, asking the event's own headline
+ * question. Hidden automatically once the event is over.
+ */
+export type EventPromoSection = {
+  type: "eventPromo";
+  id: string;
+  /** Name in the page outline. */
+  label: string;
+  /** Event slug, from src/content/events. */
+  event: string;
+  eyebrow: string;
+};
+
 export type Section =
   | HeroSection
   | ProofSection
@@ -284,6 +306,7 @@ export type Section =
   | MissionSection
   | PathsSection
   | KairosSection
+  | EventPromoSection
   | KairosHeroSection
   | StoryHeroSection
   | MarkSection;

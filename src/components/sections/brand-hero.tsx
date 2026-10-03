@@ -7,7 +7,7 @@ import { HeroHeadline } from "./hero-headline";
 export function BrandHero({ section }: { section: BrandHeroSection }) {
   return (
     <section id={section.id} aria-labelledby="hero-title" className="relative overflow-hidden">
-      <Container className="grid items-center gap-12 pt-14 pb-20 sm:pt-20 lg:min-h-[calc(100svh-5rem)] lg:grid-cols-12 lg:gap-14 lg:py-16">
+      <Container className="grid items-center gap-12 pt-14 pb-16 sm:pt-20 lg:grid-cols-12 lg:gap-14 lg:pt-12 lg:pb-14">
         <div className="lg:col-span-6">
           <FadeUp>
             <p className="mb-7 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-medium text-royal ring-1 ring-line">

@@ -94,7 +94,7 @@ Each event gets its own page on its own subdomain, e.g. `salarystructure.newadam
 - **Content:** one file per event in `src/content/events/` (see `salarystructure.ts`), listed in `src/content/events/index.ts`.
 - **Template:** `src/components/events/` renders every event in the same conversion-focused layout (rates and seat picker, group-rate nudge, "message to your boss", FAQ, sticky phone bar). Pricing rules live in `src/lib/event-pricing.ts`.
 - **Routing:** `src/proxy.ts` serves `<slug>.<domain>` from `/events/<slug>`, and redirects `newadam.co/events/<slug>` to the subdomain. Locally, open `http://<slug>.localhost:3000`.
-- **Registration:** currently the event's Google Form (`registration.formUrl`). Online checkout (PayMongo) can be added later without changing the content files.
+- **Registration:** the event's Google Form (`registration.formUrl`). Every "Register now" button opens it; payment details come from the secretariat.
 
 ### Live seats from Google Sheets
 
@@ -104,19 +104,6 @@ The countdown bar, hero facts, seat picker and closing section show live seats l
 - Locally it's in `.env.local` (not committed; see `.env.example`). In Vercel, add it under **Project → Settings → Environment Variables**.
 - Counting rules (per event, in `seatsSheet`): only rows with a value in `requiredColumn` count; a number in `seatsColumn` is added up, anything else counts as 1 seat; rows whose `statusColumn` contains a word in `ignoreStatuses` (e.g. cancelled, refunded) are skipped.
 - When seats reach 0 the page switches to "Sold out · call for the waitlist".
-
-### Payment
-
-Under the seat picker, the page explains how to pay after registering. Set per event in `payment`:
-
-- **Pay online by emailed link** (`payment.online`, PayMongo Checkout): after someone submits the Google Form, the Apps Script in the registrations sheet gets a payment link from `/api/events/<slug>/payment-link`, writes **Amount due** and **Payment link** on their row and emails them the link. Setup: [`scripts/google-apps-script/README.md`](scripts/google-apps-script/README.md).
-  - The link (`/pay/<token>`) is signed with `PAYMENT_LINK_SECRET`, so seats and price can't be changed, and it holds no personal data. Each visit opens a fresh PayMongo checkout priced with `quote()` (seats × per-seat rate), with early bird locked to when they registered.
-  - `methods` picks what PayMongo offers: online banking (`dob`, `dob_ubp`, ~0.71%) and QR Ph (`qrph`, ~1.5%) keep fees lowest.
-  - Needs `PAYMONGO_SECRET_KEY` (`sk_test_…` locally and in Preview, `sk_live_…` in Production) and `PAYMENT_LINK_SECRET` (same value in Vercel and the Apps Script's Script properties).
-  - After paying, PayMongo sends them back to `?paid=1`, which shows "Payment received".
-- **Bank transfer** (`payment.bank`): bank, account name, number (with a copy button), amount and an optional InstaPay/QR Ph image in `public/events/<slug>/`. No fees; the secretariat confirms from the deposit slip.
-- With neither filled in, the picker shows `registration.note` instead.
-- Payments aren't written back to the sheet yet, so they don't change seats left (registrations already count when the form is submitted).
 
 ### Add a new event
 

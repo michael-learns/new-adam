@@ -57,15 +57,12 @@ export function EventPage({
   url,
   earlyBirdAtBuild,
   renderedAt,
-  payOnline,
 }: {
   event: EventDetails;
   url: string;
   earlyBirdAtBuild: boolean;
   /** When the server rendered the page; the countdown starts from here until the browser takes over. */
   renderedAt: number;
-  /** Whether online payment (PayMongo) is set up on the server. */
-  payOnline: boolean;
 }) {
   const { hero, problem, outcomes, modules, speaker, audience, pricing, faq, final, schedule, prices } = event;
   const groups = [...prices.groups].sort((a, b) => a.minSeats - b.minSeats);
@@ -312,7 +309,7 @@ export function EventPage({
                   </EarlyBirdOnly>
                 </div>
 
-                <SeatPicker event={event} payOnline={payOnline} />
+                <SeatPicker event={event} />
 
                 <div className="rates">
                   <div>

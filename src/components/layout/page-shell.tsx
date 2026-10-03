@@ -1,5 +1,7 @@
 import { SectionRenderer } from "@/components/sections";
+import { eventUrl, getEvent } from "@/content/events";
 import type { Link, Page, Section, SiteSettings } from "@/content/types";
+import { nowMs } from "@/lib/event-pricing";
 import { SectionRail, type RailItem } from "./section-rail";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
@@ -23,6 +25,14 @@ function railLabel(section: Section): string | null {
   }
 }
 
+/** The header's event button, while the featured event hasn't ended. */
+function featuredEventLink(site: SiteSettings) {
+  const featured = site.featuredEvent;
+  const event = featured && getEvent(featured.event);
+  if (!featured || !event || nowMs() > Date.parse(event.schedule.endsAt)) return undefined;
+  return { label: featured.label, shortLabel: featured.shortLabel, href: eventUrl(event) };
+}
+
 /** Header, page sections in order, and footer. Shared by every page. */
 export function PageShell({ page, site, cta }: { page: Page; site: SiteSettings; cta?: Link }) {
   const sections = page.sections.filter((section) => !section.hidden);
@@ -34,7 +44,7 @@ export function PageShell({ page, site, cta }: { page: Page; site: SiteSettings;
 
   return (
     <>
-      <SiteHeader nav={site.nav} cta={cta} current={page.slug} />
+      <SiteHeader nav={site.nav} cta={cta} current={page.slug} event={featuredEventLink(site)} />
       <SectionRail items={outline} />
       <main id="main" className="relative">
         {/* Dashed guide lines along the content edges, as on a layout grid. */}

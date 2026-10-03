@@ -3,6 +3,7 @@ import { Assessment } from "./assessment";
 import { Booking } from "./booking";
 import { BrandHero } from "./brand-hero";
 import { Comparison } from "./comparison";
+import { EventPromo } from "./event-promo";
 import { Formats } from "./formats";
 import { Foundation } from "./foundation";
 import { Hero } from "./hero";
@@ -24,6 +25,8 @@ export function SectionRenderer({ section }: { section: Section }) {
   switch (section.type) {
     case "hero":
       return <Hero section={section} />;
+    case "eventPromo":
+      return <EventPromo section={section} />;
     case "proof":
       return <Proof section={section} />;
     case "problem":

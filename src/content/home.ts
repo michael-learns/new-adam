@@ -19,6 +19,14 @@ export const home: Page = {
   },
   sections: [
     {
+      // First thing on the page: big button to the event page; disappears by itself after the event.
+      type: "eventPromo",
+      id: "event",
+      label: "Upcoming event",
+      event: "salarystructure",
+      eyebrow: "Upcoming workshop",
+    },
+    {
       type: "brandHero",
       id: "top",
       eyebrow: "Values Formation · Weddings · Philippines",

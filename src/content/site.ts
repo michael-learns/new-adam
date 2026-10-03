@@ -25,5 +25,6 @@ export const site: SiteSettings = {
     { label: "Weddings", href: "/weddings" },
     { label: "Our story", href: "/our-story" },
   ],
+  featuredEvent: { event: "salarystructure", label: "Salary Structure Workshop", shortLabel: "Salary Workshop" },
   social: [],
 };
